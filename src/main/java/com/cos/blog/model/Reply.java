@@ -8,10 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
@@ -23,25 +21,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity     //orm class다 
-public class Board {
-    
+@Entity     
+public class Reply {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto increment
     private int id;
-
-    @Column(nullable = false,length = 100)
-    private String title;
-
-    @Lob //대용량 데이터
-    private String content; //섬머노트 라이브러리 사용 <html>태그가 섞여서 디자인이되어 용량이커짐.
     
-    @ColumnDefault("0") 
-    private int count; //조회수
+    @Column(nullable = false,length = 200)
+    private String content;
 
-    @ManyToOne  // Many= board, One = user  -> 한명의 유저가 여러개의 게시물을 작성할 수 있다.
+    @ManyToOne  // Many= 댓글, One = Board  -> 하나의 게시글에 여러개의 댓글
+    @JoinColumn(name="boardId")
+    private Board board;
+
+    @ManyToOne  // Many= 댓글, One = User  -> 하나의 유저가 여러개의 댓글
     @JoinColumn(name="userId")
-    private User user; //Db는 오브젝트를 저장할수 없다. FK, 자바는 오브젝트를 저장할수있다.
+    private User user;
 
     @CreationTimestamp
     private Timestamp createDate;
