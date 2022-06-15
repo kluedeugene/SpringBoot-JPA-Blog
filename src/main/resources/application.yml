@@ -22,13 +22,13 @@ spring:
   jpa:
     open-in-view: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: create  #update, none, create (실행할때마다 업뎃, 안하기, 생성 )
       naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      use-new-id-generator-mappings: false
-    show-sql: true
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl #변수명그대로 필드를 생성 springphysicalnamingstrategy를 사용하면 myEmail같은 경우 my_email로 생성
+      use-new-id-generator-mappings: false  #false- jpa의 기본 넘버링 전략 사용하지않음 true- jpa의 기본 넘버링 전략 사용
+    show-sql: true    #콘솔창에 sql보여주기
     properties:
-      hibernate.format_sql: true
+      hibernate.format_sql: true  #정렬되서 보여줌
 
   jackson:
     serialization:
