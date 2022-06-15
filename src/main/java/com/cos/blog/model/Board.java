@@ -1,15 +1,18 @@
 package com.cos.blog.model;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
@@ -39,9 +42,15 @@ public class Board {
     @ColumnDefault("0") 
     private int count; //조회수
 
-    @ManyToOne  // Many= board, One = user  -> 한명의 유저가 여러개의 게시물을 작성할 수 있다.
+    // Many= board, One = user  -> 한명의 유저가 여러개의 게시물을 작성할 수 있다.
+    @ManyToOne(fetch = FetchType.EAGER)     //fetch = eager -> 즉시 로딩 (ManyToOne 기본전략)
     @JoinColumn(name="userId")
     private User user; //Db는 오브젝트를 저장할수 없다. FK, 자바는 오브젝트를 저장할수있다.
+
+
+    //mappedby 연관관계의 주인이 아니다. (FK가 아니다.) DB에 칼럼을 만들지마세요(조인컬럼 x)
+    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)  // OneToMany  기본= LAZY전략. (필요할때 로딩) 여기선 즉시 로딩을 사용할거기때문에 EAGER.   
+    private List<Reply> reply;      //board= 필드이름
 
     @CreationTimestamp
     private Timestamp createDate;
