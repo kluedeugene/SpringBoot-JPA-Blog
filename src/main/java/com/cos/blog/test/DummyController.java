@@ -5,9 +5,11 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,6 +34,19 @@ public class DummyController {
     @Autowired //의존성 주입이다.(DI)
     private UserRepository userRepository;
 
+
+    @DeleteMapping("/dummy/user/{id}")
+    public String delete(@PathVariable int id) {
+        
+        try {
+        userRepository.deleteById(id);
+        } catch (EmptyResultDataAccessException e) {        // 자세하게 분류하기 귀찮으면 Exception의 최고 부모인 Exception을 걸어도 된다. 자세하게하는 이유는 혹여나 다른 예외 오류가 잡힐수도있기때문
+            return "삭제를 실패했습니다. 해당 id는 존재하지않습니다.";
+        }
+        return "삭제되었습니다 id: " + id;
+    }
+
+
     @Transactional
     @PutMapping("/dummy/user/{id}")
     public User updateUser(@PathVariable int id, @RequestBody User requestUser) { //json으로 받으려면 @RequestBody -> Json 을 Java object로 변환해서 받음
@@ -49,7 +64,7 @@ public class DummyController {
 
         //더티체킹이란?
         
-        return null;
+        return user;
         
         
         
