@@ -10,6 +10,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.domain.Sort;
@@ -28,6 +30,31 @@ public class DummyController {
         // 스프링이 관리하는 객체를 찾아서 주입해준다.
     @Autowired //의존성 주입이다.(DI)
     private UserRepository userRepository;
+
+    @PutMapping("/dummy/user/{id}")
+    public User updateUser(@PathVariable int id, @RequestBody User requestUser) { //json으로 받으려면 @RequestBody -> Json 을 Java object로 변환해서 받음
+        System.out.println("id: " + id);                                                                                       //       (MessageConverter의 Jackson라이브러리가)
+        System.out.println("password: " + requestUser.getPassword());
+        System.out.println("email: " + requestUser.getEmail());
+
+        User user = userRepository.findById(id).orElseThrow(()->{
+            return new IllegalArgumentException("수정에 실패하였습니다.");
+        });
+        user.setPassword(requestUser.getPassword());
+        user.setEmail(requestUser.getEmail());
+        
+        //userRepository.save(user);
+
+        //더티체킹이란?
+        
+        return null;
+        
+        
+        
+    }
+
+
+
 
     @GetMapping("/dummy/users")
     public List<User> list() {
