@@ -7,6 +7,7 @@ import java.util.function.Supplier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,6 +32,7 @@ public class DummyController {
     @Autowired //의존성 주입이다.(DI)
     private UserRepository userRepository;
 
+    @Transactional
     @PutMapping("/dummy/user/{id}")
     public User updateUser(@PathVariable int id, @RequestBody User requestUser) { //json으로 받으려면 @RequestBody -> Json 을 Java object로 변환해서 받음
         System.out.println("id: " + id);                                                                                       //       (MessageConverter의 Jackson라이브러리가)
