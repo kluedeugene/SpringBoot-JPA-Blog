@@ -33,7 +33,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // identitiy-프로젝트에서 연결된 db의 넘버링 전략을 따라간다.(오라클-시퀀스, mysql-auto_increment)
     private int id; //시퀀스, auto_incement 
 
-    @Column(nullable = false, length= 30)
+    @Column(nullable = false, length= 30, unique= true)
     private String username; //아이디
 
     @Column(nullable = false, length = 100)// 123456-> 해쉬암호화하면 길어질수있기때문에 넉넉히
