@@ -8,8 +8,8 @@
 	<h2>Stacked form</h2>
 	<%-- <form action="/user/join" method="POST">  예전방식--%>
 		<div class="form-group">
-			<label for="username">Username</label> 
-      <input type="text"	class="form-control" id="email" placeholder="Enter username" >
+			<label for="username">Username:</label> 
+      <input type="username"	class="form-control" id="username" placeholder="Enter username" >
 		</div>
 		<div class="form-group">
 			<label for="password">Password:</label>
