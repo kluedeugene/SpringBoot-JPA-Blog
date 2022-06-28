@@ -15,14 +15,7 @@ public class UserService {
     private UserRepository userRepository;
 
     @Transactional // 회원가입 전체의서비스가 하나의 트랜잭션으로 묶인다. 전체가 성공-> 커밋, 실패 -> 롤백
-    public int 회원가입(User user) {
-        try {
-            userRepository.save(user);
-            return 1;
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("UserService: 회원가입(): " + e.getMessage());
-            return -1;
-        }
+    public void 회원가입(User user) {
+        userRepository.save(user);
     }
 }
