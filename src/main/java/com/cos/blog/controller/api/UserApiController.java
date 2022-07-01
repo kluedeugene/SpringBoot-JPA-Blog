@@ -28,16 +28,18 @@ public class UserApiController {
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1); // 자바오브젝트를 JSON으로 변환해서 리턴(Jackson이)
     }
 
-    @PostMapping("/api/user/login")
-    public ResponseDto<Integer> login(@RequestBody User user, HttpSession session) {
-        System.out.println("UserApiController: login 호출됨");
+    // @PostMapping("/api/user/login")
+    // public ResponseDto<Integer> login(@RequestBody User user, HttpSession
+    // session) {
+    // System.out.println("UserApiController: login 호출됨");
 
-        User principal = userService.로그인(user); // principal = 접근주체
+    // User principal = userService.로그인(user); // principal = 접근주체
 
-        if (principal != null) {
-            session.setAttribute("principal", principal); // principal을 키값으로 세션 생성
-        }
-        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1); // 자바오브젝트를 JSON으로 변환해서 리턴(Jackson이)
+    // if (principal != null) {
+    // session.setAttribute("principal", principal); // principal을 키값으로 세션 생성
+    // }
+    // return new ResponseDto<Integer>(HttpStatus.OK.value(), 1); // 자바오브젝트를 JSON으로
+    // 변환해서 리턴(Jackson이)
 
-    }
+    // }
 }
