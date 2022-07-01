@@ -26,7 +26,7 @@ let index = {
 		$.ajax({
 			//회원가입 수행 요청 -> 정상이면  done 실행 실패하면 fail 실행
 			type: 'POST',
-			url: '/blog/api/user', //요청 Url
+			url: '/api/user', //요청 Url
 			data: JSON.stringify(data), //요청과 함께 서버로 데이터를 전송 할 string 또는 map  , 자바  '스크립트' 오브젝트를 Json문자열로 변환
 			contentType: 'application/json; charset=UTF-8', //body데이터가 어떤 타입인지(MIME)
 			dataType: 'json' //서버에서 반환되는 데이터 형식을 지정합니다. 기본적으로 반환값이 String문자열인데 (생긴게 json이라면)=>javascript오브젝트로 변경
@@ -34,7 +34,7 @@ let index = {
 			.done(function (response) {
 				alert('회원가입이 완료되었습니다.');
 				console.log(response);
-				location.href = '/blog';
+				location.href = '/';
 			})
 			.fail(function (error) {
 				alert(JSON.stringify(error));
@@ -50,7 +50,7 @@ let index = {
 		$.ajax({
 			//로그인 수행 요청 -> 정상이면  done 실행 실패하면 fail 실행
 			type: 'POST',
-			url: '/blog/api/user/login', //요청 Url
+			url: '/api/user/login', //요청 Url
 			data: JSON.stringify(data), //요청과 함께 서버로 데이터를 전송 할 string 또는 map  , 자바  '스크립트' 오브젝트를 Json문자열로 변환
 			contentType: 'application/json; charset=UTF-8', //body데이터가 어떤 타입인지(MIME)
 			dataType: 'json' //서버에서 반환되는 데이터 형식을 지정합니다. 기본적으로 반환값이 String문자열인데 (생긴게 json이라면)=>javascript오브젝트로 변경
@@ -58,7 +58,7 @@ let index = {
 			.done(function (response) {
 				alert('로그인이 완료되었습니다.');
 				console.log(response);
-				location.href = '/blog';
+				location.href = '/';
 			})
 			.fail(function (error) {
 				alert(JSON.stringify(error));

@@ -27,5 +27,5 @@
 </div>
 
 <%-- ( / ) 를하면 static 폴더를 찾는다.? --%>
-<script src="/blog/js/user.js"></script>
+<script src="/js/user.js"></script>
 <%@ include file="../layout/footer.jsp"%>
