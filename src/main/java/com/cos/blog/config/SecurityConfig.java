@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 //빈등록: 스프링 컨테이너에서 객체를 관리할수있게 하는것.
@@ -14,17 +15,23 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableGlobalMethodSecurity(prePostEnabled = true) // 특정 주소로 접근을 하면 권한 및 인증을 미리 체크하겠다는 뜻
 public class SecurityConfig {
 
+    @Bean // Ioc가 되어 스프링에 등록
+    public BCryptPasswordEncoder encodePWD() {
+        return new BCryptPasswordEncoder();
+    }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-        	.authorizeRequests() // 리퀘스트가 들어오면
-                .antMatchers("/auth/**") // ~의 경로들은 permitall. 허용
+        		.csrf().disable()		//csrf 토큰 비활성화	(테스트시 추천)
+                .authorizeRequests() // 리퀘스트가 들어오면
+                .antMatchers("/","/auth/**", "/js/**","/css/**","/image/**") // ~의 경로들은 permitall. 허용
                 .permitAll()
                 .anyRequest() // 이게 아닌 모든 요청은
                 .authenticated() // 인증이 되야한다.
-            .and()
+                .and()
                 .formLogin()
-                .loginPage("/auth/loginForm");	//인증필요한 경우 해당 경로로
+                .loginPage("/auth/loginForm"); // 인증필요한 경우 해당 경로로
         return http.build();
     }
 }
