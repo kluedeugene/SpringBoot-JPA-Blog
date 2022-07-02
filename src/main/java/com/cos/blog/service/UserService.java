@@ -18,8 +18,10 @@ public class UserService {
         userRepository.save(user);
     }
 
-    @Transactional(readOnly = true) // select할때 트랜젝션 시작, 서비스 종료시에 트랜젝션 종료( 정합성 )
-    public User 로그인(User user) {// 여기선 select를 한번만 하지만 여러번하더라도 같은데이터를 찾을수있도록하는것.(정합성)
-        return userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
-    }
+    // @Transactional(readOnly = true) // select할때 트랜젝션 시작, 서비스 종료시에 트랜젝션 종료( 정합성 )
+    // public User 로그인(User user) {// 여기선 select를 한번만 하지만 여러번하더라도 같은데이터를
+    // 찾을수있도록하는것.(정합성)
+    // return userRepository.findByUsernameAndPassword(user.getUsername(),
+    // user.getPassword());
+    // }
 }

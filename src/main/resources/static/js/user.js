@@ -5,10 +5,10 @@ let index = {
 			//function(){} 대신에 사용하는 이뉴는 화살표함수로 this를 바인딩하기 위해서이다.
 			this.save();
 		});
-		$('#btn-login').on('click', () => {
-			// function(){} , ()=>{} this를 바인딩하기 위해서!!
-			this.login();
-		});
+		// $('#btn-login').on('click', () => {
+		// 	// function(){} , ()=>{} this를 바인딩하기 위해서!!
+		// 	this.login();
+		// });
 	},
 
 	save: function () {
@@ -26,7 +26,7 @@ let index = {
 		$.ajax({
 			//회원가입 수행 요청 -> 정상이면  done 실행 실패하면 fail 실행
 			type: 'POST',
-			url: '/api/user', //요청 Url
+			url: '/auth/joinProc', //요청 Url
 			data: JSON.stringify(data), //요청과 함께 서버로 데이터를 전송 할 string 또는 map  , 자바  '스크립트' 오브젝트를 Json문자열로 변환
 			contentType: 'application/json; charset=UTF-8', //body데이터가 어떤 타입인지(MIME)
 			dataType: 'json' //서버에서 반환되는 데이터 형식을 지정합니다. 기본적으로 반환값이 String문자열인데 (생긴게 json이라면)=>javascript오브젝트로 변경
@@ -39,31 +39,31 @@ let index = {
 			.fail(function (error) {
 				alert(JSON.stringify(error));
 			});
-	},
-
-	login: function () {
-		let data = {
-			username: $('#username').val(),
-			password: $('#password').val()
-		};
-
-		$.ajax({
-			//로그인 수행 요청 -> 정상이면  done 실행 실패하면 fail 실행
-			type: 'POST',
-			url: '/api/user/login', //요청 Url
-			data: JSON.stringify(data), //요청과 함께 서버로 데이터를 전송 할 string 또는 map  , 자바  '스크립트' 오브젝트를 Json문자열로 변환
-			contentType: 'application/json; charset=UTF-8', //body데이터가 어떤 타입인지(MIME)
-			dataType: 'json' //서버에서 반환되는 데이터 형식을 지정합니다. 기본적으로 반환값이 String문자열인데 (생긴게 json이라면)=>javascript오브젝트로 변경
-		})
-			.done(function (response) {
-				alert('로그인이 완료되었습니다.');
-				console.log(response);
-				location.href = '/';
-			})
-			.fail(function (error) {
-				alert(JSON.stringify(error));
-			});
 	}
+
+	// login: function () {
+	// 	let data = {
+	// 		username: $('#username').val(),
+	// 		password: $('#password').val()
+	// 	};
+
+	// 	$.ajax({
+	// 		//로그인 수행 요청 -> 정상이면  done 실행 실패하면 fail 실행
+	// 		type: 'POST',
+	// 		url: '/api/user/login', //요청 Url
+	// 		data: JSON.stringify(data), //요청과 함께 서버로 데이터를 전송 할 string 또는 map  , 자바  '스크립트' 오브젝트를 Json문자열로 변환
+	// 		contentType: 'application/json; charset=UTF-8', //body데이터가 어떤 타입인지(MIME)
+	// 		dataType: 'json' //서버에서 반환되는 데이터 형식을 지정합니다. 기본적으로 반환값이 String문자열인데 (생긴게 json이라면)=>javascript오브젝트로 변경
+	// 	})
+	// 		.done(function (response) {
+	// 			alert('로그인이 완료되었습니다.');
+	// 			console.log(response);
+	// 			location.href = '/';
+	// 		})
+	// 		.fail(function (error) {
+	// 			alert(JSON.stringify(error));
+	// 		});
+	// }
 };
 
 index.init();

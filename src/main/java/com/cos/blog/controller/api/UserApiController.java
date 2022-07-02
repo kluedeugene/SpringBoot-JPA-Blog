@@ -19,7 +19,7 @@ public class UserApiController {
     @Autowired // @Service로 Bean에 등록되어있다.
     private UserService userService;
 
-    @PostMapping("/api/user")
+    @PostMapping("/auth/joinProc")
     public ResponseDto<Integer> save(@RequestBody User user) { // username,password, email
         System.out.println("UserApiController: save 호출됨");
         // 실제로 db에 insert를하고 아래에서 return이 되야한다.
@@ -28,18 +28,4 @@ public class UserApiController {
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1); // 자바오브젝트를 JSON으로 변환해서 리턴(Jackson이)
     }
 
-    // @PostMapping("/api/user/login")
-    // public ResponseDto<Integer> login(@RequestBody User user, HttpSession
-    // session) {
-    // System.out.println("UserApiController: login 호출됨");
-
-    // User principal = userService.로그인(user); // principal = 접근주체
-
-    // if (principal != null) {
-    // session.setAttribute("principal", principal); // principal을 키값으로 세션 생성
-    // }
-    // return new ResponseDto<Integer>(HttpStatus.OK.value(), 1); // 자바오브젝트를 JSON으로
-    // 변환해서 리턴(Jackson이)
-
-    // }
 }
