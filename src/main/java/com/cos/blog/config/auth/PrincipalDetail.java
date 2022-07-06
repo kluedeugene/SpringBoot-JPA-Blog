@@ -3,13 +3,15 @@ package com.cos.blog.config.auth;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.cos.blog.model.User;
 
 //스프링 시큐리티가 로그인 요청을 가로채서 로그인을 진행하고 완료가 되면  UserDetails 타입의 오브젝트를
-//  스프링 시큐리티의 고유한 세션저장소에 저장을 해준다. 
+//  스프링 시큐리티의 고유한 세션저장소에 저장을 해준다.
+@Getter     //BoardApiController에서 User 객체를 꺼내 쓰기위해 getter
 public class PrincipalDetail implements UserDetails { // 타입을 UserDetails로 지정.
     private User user; // 객체를 품고잇는것. 콤포지션 ( extends는 상속. 품고잇는것은 컴포지션)
 
@@ -56,7 +58,7 @@ public class PrincipalDetail implements UserDetails { // 타입을 UserDetails�
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
         Collection<GrantedAuthority> collectors = new ArrayList<>(); // 어레이리스트의 부모를 타고가다보면 collection이 있다. 따라서 어레이리스트는
-                                                                     // 컬렉션타입
+        // 컬렉션타입
         collectors.add(() -> {
             return "ROLE_" + user.getRole();
         });
