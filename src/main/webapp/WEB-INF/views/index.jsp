@@ -6,27 +6,18 @@
 <div class="container">
 
 <%-- m-2 -> 마진값 --%>
- <div class="card m-2" >	
-  <div class="card-body">
-    <h4 class="card-title">제목</h4>
-    <p class="card-text">내용</p>
-    <a href="#" class="btn btn-primary">상세보기</a>
-  </div> 
-</div>
- <div class="card m-2" >	
-  <div class="card-body">
-    <h4 class="card-title">제목</h4>
-    <p class="card-text">내용</p>
-     <a href="#" class="btn btn-primary">상세보기</a>
-  </div>
-</div> 
- <div class="card m-2" >	
-  <div class="card-body">
-    <h4 class="card-title">제목</h4>
-    <p class="card-text">내용</p>
-    <a href="#" class="btn btn-primary">상세보기</a>
-  </div>
-</div>
+<%--request 정보가 넘어올때 jstl에서 boards를 받아주는 식 ${} --%>
+    <c:forEach var="board" items="${boards}">
+        <div class="card m-2" >
+            <div class="card-body">
+                <h4 class="card-title">${board.title}</h4>
+<%--                <p class="card-text">${board.content}</p>--%>
+                <a href="#" class="btn btn-primary">상세보기</a>
+            </div>
+        </div>
+
+    </c:forEach>
+
 
 </div>
 <br/>

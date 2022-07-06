@@ -12,6 +12,11 @@ spring:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
+  devtools:
+    livereload:
+      enabled: true
+  thymeleaf:
+    cache: false
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
