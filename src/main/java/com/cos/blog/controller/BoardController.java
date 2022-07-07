@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.cos.blog.config.auth.PrincipalDetail;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class BoardController {
@@ -30,7 +31,12 @@ public class BoardController {
 
     }
 
+   @GetMapping("/board/{id}")
+    public String findById(@PathVariable int id, Model model){
+        model.addAttribute("board",boardService.글상세보기(id));
+    return "board/detail";
 
+    }
 
     @GetMapping("/board/saveForm")
     public String saveForm() {
