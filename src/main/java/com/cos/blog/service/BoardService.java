@@ -21,18 +21,24 @@ public class BoardService {
     public void 글쓰기(Board board, User user) {  //title, content
         board.setCount(0);
         board.setUser(user);
-    boardRepository.save(board);
+        boardRepository.save(board);
     }
 
-    public Page<Board> 글목록(Pageable pageable){
-
+    @Transactional(readOnly = true)
+    public Page<Board> 글목록(Pageable pageable) {
         return boardRepository.findAll(pageable);
     }
 
-    public Board 글상세보기(int id){
+    @Transactional(readOnly = true)
+    public Board 글상세보기(int id) {
         return boardRepository.findById(id)
-                .orElseThrow(()->{
+                .orElseThrow(() -> {
                     return new IllegalArgumentException("글상세보기 실패: 글아이디를 찾을수 없습니다.");
                 });
+    }
+
+    @Transactional
+    public void 글삭제하기(int id) {
+        boardRepository.deleteById(id);
     }
 }

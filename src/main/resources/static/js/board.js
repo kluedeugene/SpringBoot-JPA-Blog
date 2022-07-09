@@ -5,6 +5,9 @@ let index = {
 			//function(){} 대신에 사용하는 이뉴는 화살표함수로 this를 바인딩하기 위해서이다.
 			this.save();
 		});
+		$('#btn-delete').on('click', () => {
+			this.deleteById();
+		});
 	},
 
 	save: function () {
@@ -30,7 +33,22 @@ let index = {
 			.fail(function (error) {
 				alert(JSON.stringify(error));
 			});
-	}
+	},
+	deleteById: function(){
+		let id = $("#id").text();
+
+		$.ajax({
+			type: "DELETE",
+			url: "/api/board/"+id,
+			dataType: "json"
+		}).done(function(resp){
+			alert("삭제가 완료되었습니다.");
+			location.href = "/";
+		}).fail(function(error){
+			alert(JSON.stringify(error));
+		});
+	},
+
 
 };
 
