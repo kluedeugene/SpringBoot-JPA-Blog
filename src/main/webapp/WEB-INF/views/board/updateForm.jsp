@@ -6,19 +6,18 @@
 
   <div class="container">
 	<form>
+		<input type=" hidden" id="id" value="${board.id}"/>
 		<div class="form-group">
-
-			 <input type="text" name="title" class="form-control" placeholder="Enter title" id="title">
+			 <input value="${board.title}" type="text" name="title" class="form-control" placeholder="Enter title" id="title">
 		</div>
 				
 <div class="form-group">
-
-  <textarea class="form-control summernote" rows="5" id="content"></textarea>
+  <textarea class="form-control summernote" rows="5" id="content">${board.content}"</textarea>
 </div>
 	
 
 	</form>
-	<button id="btn-save" class="btn btn-primary">글쓰기 완료</button>  
+	<button id="btn-update" class="btn btn-primary">글수정 완료</button>
 <%-- json요청으로 처리할거기 떄문에  버튼을 form 밖으로 --%>
 </div>
 
