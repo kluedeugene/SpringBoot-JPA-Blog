@@ -1,8 +1,10 @@
 package com.cos.blog.service;
 
 import com.cos.blog.model.Board;
+import com.cos.blog.model.Reply;
 import com.cos.blog.model.User;
 import com.cos.blog.repository.BoardRepository;
+import com.cos.blog.repository.ReplyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +18,8 @@ public class BoardService {
 
     @Autowired // DI
     private BoardRepository boardRepository;
+    @Autowired
+    private ReplyRepository replyRepository;
 
     @Transactional
     public void 글쓰기(Board board, User user) {  //title, content
@@ -53,4 +57,16 @@ public class BoardService {
         //해당 함수로 종료시 (Service가 종료될때) 트랜잭션이 종료된다.이때 더티체킹이 발생한다.
         // 왜냐하면 영속화가 되어있는 BOard의 데이터가 달라졌기 때문에 자동 업데이트.(Db 로Flush)(commit)
     }
+   @Transactional
+    public void  댓글쓰기(User user, int boardId, Reply requestReply){
+        Board board = boardRepository.findById(boardId)
+                .orElseThrow(() -> {
+                    return new IllegalArgumentException("댓글 작성 실패: 게실글 아이디를 찾을수 없습니다.");
+                });
+
+        requestReply.setUser(user);
+        requestReply.setBoard(board);
+
+        replyRepository.save(requestReply);
+   }
 }

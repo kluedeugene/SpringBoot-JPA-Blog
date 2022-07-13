@@ -3,17 +3,9 @@ package com.cos.blog.model;
 import java.sql.Timestamp;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -49,7 +41,9 @@ public class Board {
 
     //mappedby 연관관계의 주인이 아니다. (FK가 아니다.) DB에 칼럼을 만들지마세요(조인컬럼 x)
     @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)  // OneToMany  기본= LAZY전략. (필요할때 로딩) 여기선 즉시 로딩을 사용할거기때문에 EAGER.   
-    private List<Reply> reply;      //board= 필드이름
+    @JsonIgnoreProperties({"board"})        //무한참조 방지
+    @OrderBy("id desc")
+    private List<Reply> replys;      //board= 필드이름
 
     @CreationTimestamp
     private Timestamp createDate;

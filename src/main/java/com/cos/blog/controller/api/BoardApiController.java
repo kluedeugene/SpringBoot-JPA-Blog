@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import com.cos.blog.config.auth.PrincipalDetail;
 import com.cos.blog.model.Board;
+import com.cos.blog.model.Reply;
 import com.cos.blog.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,5 +40,12 @@ public class BoardApiController {
         boardService.글수정하기(id, board);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 
+    }
+
+    @PostMapping("/api/board/{boardId}/reply")
+    public ResponseDto<Integer> replySave(@PathVariable int boardId ,@RequestBody Reply reply, @AuthenticationPrincipal PrincipalDetail principal ) {   //principal이 들고있는 유저 오브젝트가 필요
+
+        boardService.댓글쓰기(principal.getUser(), boardId, reply);
+        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 }
