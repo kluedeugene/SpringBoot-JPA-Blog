@@ -36,9 +36,13 @@ let index = {
 			dataType: 'json' //서버에서 반환되는 데이터 형식을 지정합니다. 기본적으로 반환값이 String문자열인데 (생긴게 json이라면)=>javascript오브젝트로 변경
 		})
 			.done(function (response) {
+				if(response.status === 500){
+					alert("회원가입에 실패하였습니다.")
+				}else{
 				alert('회원가입이 완료되었습니다.');
 				console.log(response);
 				location.href = '/';
+				}
 			})
 			.fail(function (error) {
 				alert(JSON.stringify(error));
