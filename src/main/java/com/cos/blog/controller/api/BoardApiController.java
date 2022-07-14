@@ -42,6 +42,8 @@ public class BoardApiController {
 
     }
 
+    //데이터를 받을때 컨트롤러에서 dto를 만들어서 받는게 좋다.
+    //dto 사용하지 않은 이유는 규모가 작기때문. (데이터,필드가 많아지면 모델에 있는 오브젝트로 받는건 좋은방법이 아님.)
     @PostMapping("/api/board/{boardId}/reply")
     public ResponseDto<Integer> replySave(@PathVariable int boardId ,@RequestBody Reply reply, @AuthenticationPrincipal PrincipalDetail principal ) {   //principal이 들고있는 유저 오브젝트가 필요
 
