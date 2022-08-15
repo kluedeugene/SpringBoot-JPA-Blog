@@ -153,19 +153,18 @@
      
  ### 2. DB 설계
 
-![erd 3차 2022-01-03](https://user-images.githubusercontent.com/59757689/148910882-2ac9ec57-c339-4bef-a6d5-13025a8d9ac9.PNG)   
-![posts 테이블 db 설계](https://user-images.githubusercontent.com/59757689/148910938-c6a99c8e-fefc-467b-a2af-a68a00e01a11.PNG)   
-![user 테이블 db 설계](https://user-images.githubusercontent.com/59757689/149279956-b0a184da-9b19-4bcf-9ce8-6c001ef81f1d.PNG) 
-![comment 테이블 db 설계](https://user-images.githubusercontent.com/59757689/148910946-02280553-97ce-4d82-bbda-9c911ea89bd4.PNG)   
-created_date와 modified_date는 날짜 포맷을 적용해주기 위해 datetime > varchar로 변경했습니다.   
+![image](https://user-images.githubusercontent.com/50358936/184598973-5271baef-5c29-47a8-a56b-8792808330d5.png)
+<br>
+![image](https://user-images.githubusercontent.com/50358936/184598467-e2ae9b78-6157-45ef-963b-e3ec2e273c74.png)
+<br>
+![image](https://user-images.githubusercontent.com/50358936/184598527-815c0a0a-2da9-482d-a465-306dbafba6a2.png)
+<br>
+![image](https://user-images.githubusercontent.com/50358936/184598769-9d0a834e-9753-4c7d-96b7-13b2b60b97ab.png)
    
 <br/>
 
 ### 3. API 설계
 
-![게시글 관련 API 설계](https://user-images.githubusercontent.com/59757689/156749365-5e4cee67-1431-4e3a-9140-7b58b6e1fd53.PNG)    
-![회원 관련 API 설계 (2)](https://user-images.githubusercontent.com/59757689/148911411-0cfb65ee-5782-4f04-a7c9-7dcc84abfed8.PNG)   
-![댓글 관련 API 설계](https://user-images.githubusercontent.com/59757689/148911410-9a7729af-bb3c-49e3-b180-c52ea12ee75c.PNG)   
 
 
 
