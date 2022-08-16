@@ -122,16 +122,6 @@
 ![image](https://user-images.githubusercontent.com/50358936/184303968-8cfa137c-19ec-414b-9a2c-8215f7bba4b1.png)
   댓글은 로그인 한 사용자만 달 수 있으며, 댓글 작성시 현재 페이지를 reload 한다.   
   
-  **2. 댓글 수정**   
-  ![image](https://user-images.githubusercontent.com/59757689/156977557-8a3dae77-9a8d-4fd3-824e-8ff22606609e.png)   
-  다른 사용자는 다른 사람의 댓글을 수정/삭제할 수 없다.   
-  ![image](https://user-images.githubusercontent.com/59757689/156977567-fd983777-5b04-4f57-a815-c89a59697377.png)   
-  수정은 댓글 작성자만이 할 수 있다. 수정 완료 후 현재 페이지를 reload 한다.   
-  
-  **3. 댓글 삭제**  
-   ![image](https://user-images.githubusercontent.com/59757689/156977567-fd983777-5b04-4f57-a815-c89a59697377.png)   
-  삭제 또한 댓글 작성자만이 할 수 있다. 삭제 후 현재 페이지를 reload 한다.   
-           
   </details>
   <br/>   
  
@@ -165,29 +155,27 @@
 
 ### 3. API 설계
 
+![image](https://user-images.githubusercontent.com/50358936/184598973-5271baef-5c29-47a8-a56b-8792808330d5.png)
 
+![image](https://user-images.githubusercontent.com/50358936/184598467-e2ae9b78-6157-45ef-963b-e3ec2e273c74.png)
+
+![image](https://user-images.githubusercontent.com/50358936/184598527-815c0a0a-2da9-482d-a465-306dbafba6a2.png)
+
+![image](https://user-images.githubusercontent.com/50358936/184598769-9d0a834e-9753-4c7d-96b7-13b2b60b97ab.png)
+
+![image](https://user-images.githubusercontent.com/50358936/184818623-56a04788-1b68-47a7-9a02-b5a99ba03f1c.png)
+
+![image](https://user-images.githubusercontent.com/50358936/184818680-7fe71f19-2834-45ef-8421-ba5e449623ed.png)
 
 
 ## 마치며   
 ### 1. 프로젝트 보완사항   
 
-초기에 구상한 기능은 기본적인 CRUD 즉, 게시판에 올라오는 게시글을 대상으로 Create, Read, Update, Delete가 가능한 게시판이었습니다.   
-템플릿 엔진으로 Mustache를 선택했는데, 그 이유는 Mustache는 단순히 화면에 데이터를 렌더링 하는 엔진이고   
-Logic-less 하기 때문에 View의 역할과 서버의 역할이 명확하게 분리되어 OOP의 5원칙 중 하나인 SRP를 지킬 수 있어    
-MVC 설계에서 Model, View, Controller의 역할에 대한 구분도 명확하게 할 수 있겠다는 생각이 들었습니다.   
-또한, 다른 템플릿에 비해 빠른 로딩 속도를 자랑하며, xss를 기본적으로 이스케이프 할 수 있다는 장점들에 이끌려 Mustache를 사용하게 되었습니다.   
-그러나 게시판 CRUD 기능이 완성되어 갈 때 쯤, 아쉬운 부분이 계속해서 생겨 몇몇 기능들을 추가하게 되었습니다.   
-mustache는 로직을 넣을 수 없어 그 과정에 데이터를 렌더링 하기 전 서버에서 전처리를 하거나,    
-화면에 표시된 후에 자바스크립트로 후처리를 해줬지만 조금 아쉬운 부분이 몇 가지 남아있다고 생각합니다.   
+
 <details>
   <summary>보완사항 보기</summary>
      
-  
-- 페이징 처리 및 검색 페이징에서 페이지 번호 활성화
-- 페이지 번호는 10페이지 단위로 보여주기
-- 페이지 처음, 끝으로 이동하는 버튼
-- 생성, 수정시간 format 설정 varchar > datetime
-- 다른 사용자와 자신의 댓글이 댓글란에 있을때 자신의 댓글만 수정,삭제 버튼 보이기
+ 
   
 </details>   
 
@@ -196,8 +184,9 @@ mustache는 로직을 넣을 수 없어 그 과정에 데이터를 렌더링 하
    <details>
   <summary>추가할 기능 </summary>
      
-  
+- 댓글 수정삭제 미완료  
 - 댓글 페이징 처리
+- 로그인 회원가입 유효성검사및 
 - 쿠키나 세션을 이용해 조회수 중복 카운트 방지
 - 파일 업로드 기능 추가
 - 좋아요 기능 추가
@@ -207,7 +196,7 @@ mustache는 로직을 넣을 수 없어 그 과정에 데이터를 렌더링 하
 
 ### 2. 후기   
 
-혼자 독학하며 처음 만들어본 프로젝트이기 때문에,   
+혼자 독학하며 처음 만들어본 스프링 프로젝트이기 때문에,   
 공부한 내용을 사용해보는 설렘만큼이나 부족한 부분에 대한 아쉬움도 많이 남았습니다.   
 효율적인 설계를 위해 고민하고 찾아보며 실제로 많이 공부할 수 있었던 부분도 많았습니다.   
 책이나 블로그, 강의로 공부한 예제에서 납득했던 부분들은 실제로 코드를 짜면서 다양한 애로 사항을 마주했고   
@@ -223,4 +212,3 @@ mustache는 로직을 넣을 수 없어 그 과정에 데이터를 렌더링 하
 부족한 부분에 대해 스스로 인지하고 있고, 더 깊게 공부하며 스스로 발전할 수 있는 '방향'을 다시한번 찾을 수 있게 되었습니다.   
 이를 통해 더 나은 웹 애플리케이션을 만들 수 있을 것 같다는 자신감도 생겼습니다.   
 
-끝까지 읽어주셔서 감사합니다.
